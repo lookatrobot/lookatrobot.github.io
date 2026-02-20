@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>lookatrobot -_+</title>
+  <title>lookatrobot portfolio</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech&display=swap');
+
     @font-face {
       font-family: 'Fixedsys';
       src: url('https://cdn.jsdelivr.net/gh/piggyslasher/fixedsys-excelsior@master/FSEX302.ttf') format('truetype');
@@ -14,15 +16,17 @@
 
     body {
       min-height: 100vh;
-      background-color: #000080;
+      background-color: #1360b8;
       background-image: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px);
       display: flex;
-      align-items: flex-start;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       font-family: 'Fixedsys', monospace;
       padding-top: 90px;
+      padding-bottom: 40px;
     }
 
+    /* NAVBAR */
     .top-navbar {
       width: 100%;
       background: #c0c0c0;
@@ -53,8 +57,9 @@
       cursor: pointer; text-decoration: none; display: inline-block;
       white-space: nowrap; user-select: none;
     }
-    .nav-btn:hover { background: #000080; color: #fff; }
+    .nav-btn:hover { background: #1360b8; color: #fff; }
 
+    /* CMD WINDOW */
     .window {
       width: 720px; max-width: 95vw; margin-top: 6px;
       background: #c0c0c0;
@@ -125,10 +130,232 @@
     }
 
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    /* PROFILE CARD */
+    .profile-card {
+      display: flex;
+      gap: 16px;
+      background: #c0c0c0;
+      padding: 4px;
+    }
+
+    .profile-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .avatar-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .avatar-placeholder {
+      width: 90px;
+      height: 90px;
+      background: #ffffff;
+      border-top: 2px solid #808080;
+      border-left: 2px solid #808080;
+      border-right: 2px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      color: #808080;
+      font-family: 'Fixedsys', monospace;
+    }
+
+    .avatar-label {
+      font-family: 'Fixedsys', monospace;
+      font-size: 9px;
+      color: #000;
+      text-align: center;
+    }
+
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #00aa00;
+      border-radius: 50%;
+      box-shadow: 0 0 4px #00ff00;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .status-text {
+      font-family: 'Fixedsys', monospace;
+      font-size: 10px;
+      color: #00aa00;
+      font-weight: bold;
+    }
+
+    .profile-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px 0;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Fixedsys', monospace;
+      font-size: 12px;
+    }
+
+    .info-key {
+      color: #000080;
+      font-weight: bold;
+      width: 52px;
+      flex-shrink: 0;
+    }
+
+    .info-sep {
+      color: #808080;
+      font-weight: bold;
+    }
+
+    .info-val {
+      color: #000;
+      font-weight: bold;
+    }
+
+    .info-divider {
+      border-top: 1px solid #808080;
+      margin: 4px 0;
+    }
+
+    .info-bio {
+      font-family: 'Share Tech', monospace;
+      font-size: 15px;
+      color: #111;
+      line-height: 1.7;
+      font-weight: bold;
+    }
+
+
+    /* ── SIDE BOXES ── */
+    .side-boxes {
+      width: 720px;
+      max-width: 95vw;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .side-box {
+      flex: 1;
+      background: #c0c0c0;
+      border-top: 2px solid #ffffff;
+      border-left: 2px solid #ffffff;
+      border-right: 2px solid #808080;
+      border-bottom: 2px solid #808080;
+      box-shadow: 2px 2px 0 #000;
+      cursor: pointer;
+      position: relative;
+      transition: filter 0.1s;
+    }
+
+    .side-box:hover {
+      filter: brightness(1.06);
+    }
+
+    .box-titlebar {
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: #fff;
+      padding: 3px 7px;
+      font-family: 'Fixedsys', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .box-body {
+      padding: 18px 16px 14px;
+      text-align: center;
+      font-family: 'Fixedsys', monospace;
+    }
+
+    .box-icon {
+      font-size: 26px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .box-label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      color: #000;
+      letter-spacing: 0.04em;
+    }
+
+    .box-sub {
+      display: block;
+      font-size: 10px;
+      color: #555;
+      margin-top: 4px;
+      font-weight: normal;
+    }
+
+    /* TOOLTIP POPUP */
+    .popup {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #ffffcc;
+      border: 1px solid #808080;
+      box-shadow: 2px 2px 0 #000;
+      padding: 6px 12px;
+      font-family: 'Fixedsys', monospace;
+      font-size: 11px;
+      color: #000080;
+      font-weight: bold;
+      white-space: nowrap;
+      z-index: 200;
+      pointer-events: none;
+    }
+
+    .popup::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: #808080;
+    }
+
+    .side-box:hover .popup {
+      display: block;
+    }
   </style>
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <div class="top-navbar">
     <span class="navbar-title"></span>
     <div class="navbar-buttons">
@@ -142,9 +369,10 @@
     </div>
   </div>
 
+  <!-- USER PROFILE CARD -->
   <div class="window">
     <div class="title-bar">
-      <span>📟 C:\WINDOWS\system32\cmd.exe</span>
+      <span>👤 user_profile.exe — lookatrobot</span>
       <div class="title-bar-buttons">
         <div class="tb-btn">_</div>
         <div class="tb-btn">□</div>
@@ -160,29 +388,58 @@
     </div>
 
     <div class="window-body">
-      <div class="console-box">
-        <div class="prompt">
-          <span class="prompt-symbol">C:\Users\lookatrobot&gt;</span>
+      <div class="profile-card">
+
+        <!-- LEFT: Avatar -->
+        <div class="profile-left">
+          <div class="avatar-box">
+            <div class="avatar-placeholder">?</div>
+            </div>
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span class="status-text">ONLINE</span>
+          </div>
         </div>
-        <div class="type-line">
-          <span id="typed-text"></span><span class="cursor" id="cursor"></span>
+
+        <!-- RIGHT: Info -->
+        <div class="profile-right">
+          <div class="info-row"><span class="info-key">NAME</span><span class="info-sep">::</span><span class="info-val">lookatrobot</span></div>
+          <div class="info-row"><span class="info-key">ROLE</span><span class="info-sep">::</span><span class="info-val">student / wired-user</span></div>
+          <div class="info-row"><span class="info-key">FOCUS</span><span class="info-sep">::</span><span class="info-val">web pentesting, rev eng</span></div>
+          <div class="info-row"><span class="info-key">LANG</span><span class="info-sep">::</span><span class="info-val">C++, low-level prog</span></div>
+          <div class="info-divider"></div>
+          <div class="info-bio">I'm a wired-user, a student. I focus on web penetration testing, reverse engineering and low level programming. My goal is to make money and go deeper into computers.</div>
         </div>
+
       </div>
     </div>
+  </div>
 
-    <script>
-      const text = "I'm a wired-user, a student. I focus on web penetration testing, reverse engineering and low level programming. My goal is to make money and go deeper into computers.";
-      const el = document.getElementById('typed-text');
-      let i = 0;
-      function type() {
-        if (i < text.length) {
-          el.textContent += text.charAt(i);
-          i++;
-          setTimeout(type, 45 + Math.random() * 35);
-        }
-      }
-      setTimeout(type, 600);
-    </script>
+  <!-- SIDE BOXES -->
+  <div class="side-boxes">
+
+    <!-- LEFT: Solved Labs -->
+    <div class="side-box">
+      <div class="box-titlebar">⛏️ solved-labs.log</div>
+      <div class="box-body">
+        <span class="box-icon">🐞</span>
+        <span class="box-label">Solved-Labs</span>
+        <span class="box-sub">PortSwigger &amp; PicoCTF</span>
+      </div>
+      <div class="popup">🧪 View solved labs →</div>
+    </div>
+
+    <!-- RIGHT: Writeups -->
+    <div class="side-box">
+      <div class="box-titlebar">📄 writeups.log</div>
+      <div class="box-body">
+        <span class="box-icon">💊</span>
+        <span class="box-label">Write-ups</span>
+        <span class="box-sub">Write what I knows!</span>
+      </div>
+      <div class="popup">📝 Browse all writeups →</div>
+    </div>
+
   </div>
 
 </body>
