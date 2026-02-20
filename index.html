@@ -3,266 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Retro 98</title>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"/>
+  <title>lookatrobot -_+</title>
   <style>
+    @font-face {
+      font-family: 'Fixedsys';
+      src: url('https://cdn.jsdelivr.net/gh/piggyslasher/fixedsys-excelsior@master/FSEX302.ttf') format('truetype');
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       min-height: 100vh;
       background-color: #000080;
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 1px,
-          rgba(0,0,0,0.03) 1px,
-          rgba(0,0,0,0.03) 2px
-        );
+      background-image: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.03) 1px, rgba(0,0,0,0.03) 2px);
       display: flex;
-      align-items: flex-start;           /* ← upar shift */
+      align-items: flex-start;
       justify-content: center;
-      font-family: 'Share Tech Mono', monospace;
-      padding-top: 68px;                 /* navbar height + thoda gap */
+      font-family: 'Fixedsys', monospace;
+      padding-top: 90px;
     }
 
-    .window {
-      width: 900px;
-      max-width: 95vw;
-      min-height: 520px;                 /* ← panel ki length badhi */
-      background: #c0c0c0;
-      border-top: 2px solid #ffffff;
-      border-left: 2px solid #ffffff;
-      border-right: 2px solid #808080;
-      border-bottom: 2px solid #808080;
-      box-shadow: 2px 2px 0 #000;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .title-bar {
-      background: linear-gradient(90deg, #000080, #1084d0);
-      color: #fff;
-      padding: 4px 6px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 13px;
-      font-weight: bold;
-      letter-spacing: 0.05em;
-      user-select: none;
-    }
-
-    .title-bar-buttons {
-      display: flex;
-      gap: 2px;
-    }
-
-    .tb-btn {
-      width: 18px;
-      height: 16px;
-      background: #c0c0c0;
-      border-top: 1px solid #fff;
-      border-left: 1px solid #fff;
-      border-right: 1px solid #808080;
-      border-bottom: 1px solid #808080;
-      font-size: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #000;
-      font-family: 'Consolas', monospace;
-    }
-
-    .menu-bar {
-      background: #c0c0c0;
-      padding: 2px 4px;
-      font-size: 14px;
-      font-weight: bold;
-      border-bottom: 1px solid #808080;
-      display: flex;
-      gap: 12px;
-    }
-
-    .menu-bar span {
-      padding: 2px 6px;
-      cursor: pointer;
-    }
-
-    .menu-bar span:hover {
-      background: #000080;
-      color: #fff;
-    }
-
-    /* ── INNER BODY — GREY background ── */
-    .window-body {
-      padding: 16px;
-      background: #a8a8a8;              /* ← andar grey colour */
-      flex: 1;                          /* ← baaki poori height fill kare */
-      border-top: 2px solid #808080;
-      border-left: 2px solid #808080;
-      border-right: 2px solid #ffffff;
-      border-bottom: 2px solid #ffffff;
-      margin: 6px;                      /* thoda margin taaki border dikh sake */
-    }
-
-    .console-box {
-      background: #000;
-      color: #ffffff;
-      border-top: 2px solid #808080;
-      border-left: 2px solid #808080;
-      border-right: 2px solid #fff;
-      border-bottom: 2px solid #fff;
-      padding: 20px 24px;
-      min-height: 340px;
-      font-size: 22px;
-      line-height: 1.6;
-      font-family: 'VT323', monospace;
-      letter-spacing: 0.06em;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .prompt {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-
-    .type-line {
-      color: #ffffff;
-      font-family: 'VT323', monospace;
-      word-break: break-word;
-    }
-
-    #typed-text {
-      color: #ffffff;
-      font-family: 'VT323', monospace;
-    }
-
-    .console-box::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,255,65,0.03) 2px,
-        rgba(0,255,65,0.03) 4px
-      );
-      pointer-events: none;
-    }
-
-    .prompt {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
-    .prompt-symbol {
-      color: #ffff00;
-      font-family: 'VT323', monospace;
-      font-size: 22px;
-    }
-
-    .cursor {
-      display: inline-block;
-      width: 8px;
-      height: 14px;
-      background: #ffffff;
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-      margin-left: 2px;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
-    .status-bar {
-      background: #c0c0c0;
-      border-top: 1px solid #808080;
-      padding: 3px 8px;
-      font-size: 11px;
-      display: flex;
-      gap: 8px;
-      color: #000;
-    }
-
-    .status-panel {
-      border-top: 1px solid #808080;
-      border-left: 1px solid #808080;
-      border-right: 1px solid #fff;
-      border-bottom: 1px solid #fff;
-      padding: 1px 8px;
-    }
-
-    /* ── TOP NAVBAR ── */
     .top-navbar {
       width: 100%;
       background: #c0c0c0;
       border-bottom: 2px solid #808080;
       border-top: 2px solid #fff;
-      padding: 6px 12px;
+      padding: 14px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 4px;
-      font-family: 'Consolas', 'Courier New', monospace;
+      font-family: 'Fixedsys', monospace;
       font-size: 14px;
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       z-index: 999;
       box-shadow: 0 2px 0 #000;
     }
 
-    .navbar-title {
-      font-family: 'Consolas', 'Courier New', monospace;
-      font-size: 15px;
-      font-weight: bold;
-      color: #000;
-      letter-spacing: 0.03em;
-      white-space: nowrap;
-    }
-
-    .navbar-buttons {
-      display: flex;
-      gap: 2px;
-    }
+    .navbar-title { font-family: 'Fixedsys', monospace; font-size: 14px; font-weight: bold; color: #000; white-space: nowrap; }
+    .navbar-buttons { display: flex; gap: 10px; }
 
     .nav-btn {
+      background: #c0c0c0; color: #000;
+      border-top: 2px solid #ffffff; border-left: 2px solid #ffffff;
+      border-right: 2px solid #808080; border-bottom: 2px solid #808080;
+      padding: 2px 8px;
+      font-family: 'Fixedsys', monospace; font-size: 13px; font-weight: bold;
+      cursor: pointer; text-decoration: none; display: inline-block;
+      white-space: nowrap; user-select: none;
+    }
+    .nav-btn:hover { background: #000080; color: #fff; }
+
+    .window {
+      width: 720px; max-width: 95vw; margin-top: 6px;
       background: #c0c0c0;
-      color: #000;
-      border-top: 2px solid #ffffff;
-      border-left: 2px solid #ffffff;
-      border-right: 2px solid #808080;
-      border-bottom: 2px solid #808080;
-      padding: 2px 5px;
-      font-family: 'Consolas', 'Courier New', 'Open Sans';
-      font-size: 13px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      white-space: nowrap;
-      user-select: none;
+      border-top: 2px solid #ffffff; border-left: 2px solid #ffffff;
+      border-right: 2px solid #808080; border-bottom: 2px solid #808080;
+      box-shadow: 2px 2px 0 #000;
+      display: flex; flex-direction: column;
     }
 
-    .nav-btn:hover {
-      background: #000080;
-      color: #fff;
+    .title-bar {
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: #fff; padding: 4px 6px;
+      display: flex; align-items: center; justify-content: space-between;
+      font-family: 'Fixedsys', monospace; font-size: 13px; font-weight: bold;
+      letter-spacing: 0.05em; user-select: none;
     }
 
+    .title-bar-buttons { display: flex; gap: 2px; }
+
+    .tb-btn {
+      width: 18px; height: 16px; background: #c0c0c0;
+      border-top: 1px solid #fff; border-left: 1px solid #fff;
+      border-right: 1px solid #808080; border-bottom: 1px solid #808080;
+      font-size: 10px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #000; font-family: 'Fixedsys', monospace;
+    }
+
+    .menu-bar {
+      background: #c0c0c0; padding: 2px 4px;
+      font-size: 14px; font-family: 'Fixedsys', monospace;
+      border-bottom: 1px solid #808080; display: flex; gap: 12px;
+    }
+    .menu-bar span { padding: 2px 6px; cursor: pointer; }
+    .menu-bar span:hover { background: #000080; color: #fff; }
+
+    .window-body {
+      padding: 6px; background: #a8a8a8;
+      border-top: 2px solid #808080; border-left: 2px solid #808080;
+      border-right: 2px solid #ffffff; border-bottom: 2px solid #ffffff;
+      margin: 5px;
+    }
+
+    .console-box {
+      background: #000; color: #ffffff;
+      border-top: 2px solid #808080; border-left: 2px solid #808080;
+      border-right: 2px solid #fff; border-bottom: 2px solid #fff;
+      padding: 16px 20px; min-height: 200px;
+      font-size: 12px; line-height: 1.7;
+      font-family: 'Fixedsys', monospace; letter-spacing: 0.04em;
+      position: relative; overflow: hidden;
+    }
+
+    .console-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,65,0.03) 2px, rgba(0,255,65,0.03) 4px);
+      pointer-events: none;
+    }
+
+    .prompt { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+    .prompt-symbol { color: #ffff00; font-family: 'Fixedsys', monospace; font-size: 12px; font-weight: bold; }
+    .type-line { color: #ffffff; font-family: 'Fixedsys', monospace; word-break: break-word; font-weight: bold; }
+    #typed-text { color: #ffffff; font-family: 'Fixedsys', monospace; font-weight: bold; }
+
+    .cursor {
+      display: inline-block; width: 8px; height: 14px;
+      background: #ffffff; animation: blink 1s step-end infinite;
+      vertical-align: middle; margin-left: 2px;
+    }
+
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
   </style>
 </head>
 <body>
 
-  <!-- TOP NAVBAR -->
   <div class="top-navbar">
     <span class="navbar-title"></span>
     <div class="navbar-buttons">
@@ -271,7 +137,7 @@
       <a class="nav-btn" href="#">[LABS]</a>
       <a class="nav-btn" href="#">[RESUME]</a>
       <a class="nav-btn" href="https://github.com/lookatrobot" target="_blank">[GITHUB]</a>
-      <a class="nav-btn" href="https://discord.gg/1400899745081458886" target="_blank">[DISCORD]</a>
+      <a class="nav-btn" href="#">[DISCORD]</a>
       <a class="nav-btn" href="https://x.com/lookatrobot_" target="_blank">[TWITTER]</a>
     </div>
   </div>
@@ -293,7 +159,6 @@
       <span>Help</span>
     </div>
 
-    <!-- Inner grey body -->
     <div class="window-body">
       <div class="console-box">
         <div class="prompt">
@@ -308,22 +173,16 @@
     <script>
       const text = "I'm a wired-user, a student. I focus on web penetration testing, reverse engineering and low level programming. My goal is to make money and go deeper into computers.";
       const el = document.getElementById('typed-text');
-      const cursor = document.getElementById('cursor');
       let i = 0;
-
       function type() {
         if (i < text.length) {
           el.textContent += text.charAt(i);
           i++;
-          setTimeout(type, 45 + Math.random() * 35); // realistic typing speed with slight variance
+          setTimeout(type, 45 + Math.random() * 35);
         }
-        // cursor stays blinking after done
       }
-
-      // small delay before starting
       setTimeout(type, 600);
     </script>
-
   </div>
 
 </body>
